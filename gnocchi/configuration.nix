@@ -59,6 +59,7 @@
     
     # sway/wayland utils
     grim
+    hyprlock
     i3status
     mako
     rofi
