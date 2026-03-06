@@ -270,9 +270,11 @@
   };
 
   services.logind = {
-    lidSwitch = "suspend-then-hibernate";
-    lidSwitchDocked = "ignore";
-    lidSwitchExternalPower = "ignore";
+    settings = {
+      Login.HandleLidSwitch = "suspend-then-hibernate";
+      Login.HandleLidSwitchDocked = "ignore";
+      Login.HandleLidSwitchExternalPower = "ignore";
+    };
   };
 
   virtualisation.docker.enable = true;
