@@ -270,6 +270,8 @@
     };
   };
 
+  services.hardware.bolt.enable = true;
+
   services.logind = {
     settings = {
       Login.HandleLidSwitch = "suspend-then-hibernate";
