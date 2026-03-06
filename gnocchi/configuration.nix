@@ -121,6 +121,7 @@
     uv
     zig
     zsh
+    tree-sitter
     ty
 
     # games
