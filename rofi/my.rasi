@@ -1,0 +1,87 @@
+* {
+    font:	"Monofur Nerd Font 14";
+
+    background:	#fdf6e3aa;
+    foreground:	#586e75;
+
+    black:	#073642;
+    red:	#dc322f;
+    green:	#859900;
+    yellow:	#b58900;
+    blue:	#268bd2;
+    magenta:	#d33682;
+    cyan:	#2aa198;
+    white:	#073642;
+
+    background-color:	transparent;
+    text-color:		@foreground;
+    accent-color:	@yellow;
+}
+
+window {
+    background-color:   @background;
+
+    location:   center;
+    width:      960px;
+    height:	480px;
+    padding:	30px;
+    border:     0px;
+}
+
+inputbar {
+    padding:    8px 12px;
+    spacing:    12px;
+    children:   [ prompt, entry ];
+}
+
+prompt, entry, element-text, element-icon {
+    vertical-align: 0.5;
+}
+
+prompt {
+    text-color: @black;
+}
+
+listview {
+    lines:      8;
+    columns:    1;
+
+    fixed-height:   false;
+}
+
+element {
+    padding:    8px;
+    spacing:    8px;
+}
+
+element normal urgent {
+    text-color: @red;
+}
+
+element normal active {
+    text-color: @blue;
+}
+
+element selected {
+    text-color: @background;
+}
+
+element selected normal {
+    background-color:   @foreground;
+}
+
+element selected urgent {
+    background-color:   @background;
+}
+
+element selected active {
+    background-color:   @background;
+}
+
+element-icon {
+    size:   0.75em;
+}
+
+element-text {
+    text-color: inherit;
+}
