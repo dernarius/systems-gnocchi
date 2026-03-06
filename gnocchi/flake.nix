@@ -3,9 +3,10 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs }@inputs: {
+  outputs = { self, nixpkgs, nixos-hardware }@inputs: {
 
     nixosConfigurations.gnocchi = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -14,6 +15,7 @@
       specialArgs = { inherit inputs; };
       
       modules = [
+        nixos-hardware.nixosModules.lenovo-thinkpad-t14-intel-gen6
         ./configuration.nix
         ./hardware-configuration.nix
       ];

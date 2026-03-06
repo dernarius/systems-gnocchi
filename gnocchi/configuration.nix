@@ -168,18 +168,49 @@
     enableSSHSupport = true;
   };
 
-  systemd.timers."my-backup" = {
+  systemd.timers."backup" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
       OnBootSec = "2 hours";
       OnUnitActiveSec = "2 hours";
-      Unit = "my-backup.service";
+      Unit = "incremental-backup.service";
     };
   };
 
-  systemd.services."my-backup" = {
+  systemd.services."incremental-backup" = {
     script = ''
-      ${pkgs.duplicity}/bin/duplicity backup --encrypt-sign-key F1D15517 --exclude /home/stk/.cache --exclude /home/stk/.mozilla /home/stk scp://girlboss//mnt/newtent/stk/pupa
+      ${pkgs.duplicity}/bin/duplicity incremental \
+        --encrypt-sign-key F1D15517 \
+        --exclude /home/stk/.cache \
+        --exclude /home/stk/.mozilla \
+        --exclude /home/stk/.steam \
+        --exclude /home/stk/.bun \
+        --exclude /home/stk/.local/share/Steam \
+        --exclude /home/stk/Games \
+        /home/stk \
+        scp://girlboss//mnt/newtent/stk/gnocchi
+    '';
+    serviceConfig = {
+      Type = "oneshot";
+      User = "stk";
+    };
+    environment = {
+      PASSPHRASE = "";
+    };
+  };
+
+  systemd.services."full-backup" = {
+    script = ''
+      ${pkgs.duplicity}/bin/duplicity full \
+        --encrypt-sign-key F1D15517 \
+        --exclude /home/stk/.cache \
+        --exclude /home/stk/.mozilla \
+        --exclude /home/stk/.steam \
+        --exclude /home/stk/.bun \
+        --exclude /home/stk/.local/share/Steam \
+        --exclude /home/stk/Games \
+        /home/stk \
+        scp://girlboss//mnt/newtent/stk/gnocchi
     '';
     serviceConfig = {
       Type = "oneshot";
