@@ -43,11 +43,11 @@
 
   environment.systemPackages = with pkgs; [
     # system utils
+    brightnessctl
     docker-compose
     duplicity
     fastfetch
     imagemagick
-    light
     ncdu
     powertop
     udiskie
