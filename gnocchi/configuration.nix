@@ -278,6 +278,19 @@
     };
   };
 
+  services.upower = {
+    enable = true;
+    criticalPowerAction = "Hibernate";
+  };
+
+  services.tlp = {
+    enable = true;
+    settings = {
+      CPU_SCALING_GOVERNOR_ON_AC = "performance";
+      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
+    };
+  };
+
   virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
