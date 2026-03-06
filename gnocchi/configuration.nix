@@ -269,6 +269,12 @@
     };
   };
 
+  services.logind = {
+    lidSwitch = "suspend-then-hibernate";
+    lidSwitchDocked = "ignore";
+    lidSwitchExternalPower = "ignore";
+  };
+
   virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
