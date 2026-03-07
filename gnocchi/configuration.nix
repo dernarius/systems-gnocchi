@@ -184,11 +184,8 @@
       ${pkgs.duplicity}/bin/duplicity incremental \
         --encrypt-sign-key F1D15517 \
         --exclude /home/stk/.cache \
-        --exclude /home/stk/.mozilla \
-        --exclude /home/stk/.steam \
+        --exclude /home/stk/.config/discord/Cache \
         --exclude /home/stk/.bun \
-        --exclude /home/stk/.local/share/Steam \
-        --exclude /home/stk/Games \
         /home/stk \
         scp://girlboss//mnt/newtent/stk/gnocchi
     '';
@@ -206,11 +203,8 @@
       ${pkgs.duplicity}/bin/duplicity full \
         --encrypt-sign-key F1D15517 \
         --exclude /home/stk/.cache \
-        --exclude /home/stk/.mozilla \
-        --exclude /home/stk/.steam \
+        --exclude /home/stk/.config/discord/Cache \
         --exclude /home/stk/.bun \
-        --exclude /home/stk/.local/share/Steam \
-        --exclude /home/stk/Games \
         /home/stk \
         scp://girlboss//mnt/newtent/stk/gnocchi
     '';
