@@ -270,7 +270,7 @@
     settings = {
       Login.HandleLidSwitch = "suspend-then-hibernate";
       Login.HandleLidSwitchDocked = "ignore";
-      Login.HandleLidSwitchExternalPower = "ignore";
+      Login.HandleLidSwitchExternalPower = "suspend";
     };
   };
 
