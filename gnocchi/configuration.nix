@@ -11,6 +11,8 @@
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
   boot.initrd.kernelModules = [ "i915" ];
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
   networking.hostName = "gnocchi";
   networking.networkmanager.enable = true;
 
