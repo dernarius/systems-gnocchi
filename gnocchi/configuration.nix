@@ -228,6 +228,7 @@
   services.gnome.gnome-keyring.enable = true;
 
   services.avahi.enable = true;
+  services.avahi.nssmdns4 = true;
 
   services.gvfs.enable = true;
 
