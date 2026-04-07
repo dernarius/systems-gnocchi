@@ -4,6 +4,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-25.11";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, nixos-hardware }@inputs: {
