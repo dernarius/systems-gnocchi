@@ -116,6 +116,7 @@
     gcc
     lua-language-server
     nixd
+    nixfmt
     python312
     python312Packages.pip
     rustup
