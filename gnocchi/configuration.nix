@@ -28,13 +28,24 @@
   users.users.stk = {
     isNormalUser = true;
     description = "Stanislovas";
-    extraGroups = [ "networkmanager" "wheel" "audio" "video" "docker" "plugdev" "dialout" ];
-    packages = with pkgs; [];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "audio"
+      "video"
+      "docker"
+      "plugdev"
+      "dialout"
+    ];
+    packages = with pkgs; [ ];
     shell = pkgs.zsh;
   };
 
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
   boot.loader.systemd-boot.configurationLimit = 5;
   nix.gc.automatic = true;
   nix.gc.dates = "daily";
@@ -58,7 +69,7 @@
     usbutils
     v4l-utils
     v4l2-relayd
-    
+
     # sway/wayland utils
     grim
     hyprlock
@@ -77,7 +88,7 @@
     pamixer
     pasystray
     pavucontrol
-    
+
     # utils
     curl
     fd
@@ -98,16 +109,11 @@
     calibre
     deluge
     discord
-    freecad
     git
     inkscape
-    kicad
     obs-studio
     onlyoffice-desktopeditors
     pinentry-all
-    postman
-    trayscale
-    thunderbird
     vlc
 
     # languages
@@ -252,7 +258,7 @@
           main = {
             capslock = "overload(control, esc)"; # you might need to also enclose the key in quotes if it contains non-alphabetical symbols
           };
-          otherlayer = {};
+          otherlayer = { };
         };
         extraConfig = ''
           # put here any extra-config, e.g. you can copy/paste here directly a configuration, just remove the ids part
@@ -298,8 +304,10 @@
   virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 
-    6969 8000 8080  # development stuff
+  networking.firewall.allowedTCPPorts = [
+    6969
+    8000
+    8080 # development stuff
   ];
 
   # networking.firewall.allowedUDPPorts = [ ... ];
