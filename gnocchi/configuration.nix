@@ -2,59 +2,14 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
-
 {
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot.initrd.kernelModules = [ "i915" ];
-
-  boot.kernelPackages = pkgs.linuxPackages_latest;
-
-  networking.hostName = "gnocchi";
-  networking.networkmanager.enable = true;
-
-  time.timeZone = "Europe/Vilnius";
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  services.xserver = {
-    xkb.layout = "us";
-    xkb.variant = "";
-  };
-
-  users.users.stk = {
-    isNormalUser = true;
-    description = "Stanislovas";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "audio"
-      "video"
-      "docker"
-      "plugdev"
-      "dialout"
-    ];
-    packages = with pkgs; [ ];
-    shell = pkgs.zsh;
-  };
-
-  nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
-  boot.loader.systemd-boot.configurationLimit = 5;
-  nix.gc.automatic = true;
-  nix.gc.dates = "daily";
-  nix.gc.options = "--delete-older-than 7d";
-
-  services.pipewire.enable = true;
-  services.pulseaudio.enable = false;
-
-  environment.systemPackages = with pkgs; [
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
+let
+  stable-pkgs = with pkgs; [
     # system utils
     brightnessctl
     docker-compose
@@ -106,7 +61,6 @@
     acpica-tools
     alacritty
     alacritty-theme
-    antigravity-fhs
     calibre
     deluge
     discord
@@ -137,6 +91,61 @@
     # games
     lunar-client
   ];
+  unstable-pkgs = with unstable-pkgs; [
+    antigravity-fhs
+  ];
+in
+{
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.initrd.kernelModules = [ "i915" ];
+
+  boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  networking.hostName = "gnocchi";
+  networking.networkmanager.enable = true;
+
+  time.timeZone = "Europe/Vilnius";
+
+  i18n.defaultLocale = "en_US.UTF-8";
+
+  services.xserver = {
+    xkb.layout = "us";
+    xkb.variant = "";
+  };
+
+  users.users.stk = {
+    isNormalUser = true;
+    description = "Stanislovas";
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "audio"
+      "video"
+      "docker"
+      "plugdev"
+      "dialout"
+    ];
+    packages = with pkgs; [ ];
+    shell = pkgs.zsh;
+  };
+
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
+  boot.loader.systemd-boot.configurationLimit = 5;
+  nix.gc.automatic = true;
+  nix.gc.dates = "daily";
+  nix.gc.options = "--delete-older-than 7d";
+
+  services.pipewire.enable = true;
+  services.pulseaudio.enable = false;
+
+  environment.systemPackages = stable-pkgs ++ unstable-pkgs;
 
   fonts.packages = with pkgs; [
     nerd-fonts.monofur
