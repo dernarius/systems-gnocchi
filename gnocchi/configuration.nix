@@ -93,6 +93,7 @@ let
   ];
   unstable-pkgs = with pkgs-unstable; [
     antigravity-fhs
+    gemini-cli
   ];
 in
 {
