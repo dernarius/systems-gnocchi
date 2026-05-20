@@ -314,7 +314,7 @@ in
 
   services.ollama = {
     enable = true;
-    package = pkgs.ollama-vulkan;
+    package = pkgs-unstable.ollama-vulkan;
   };
 
   virtualisation.docker.enable = true;
