@@ -91,7 +91,7 @@ let
     # games
     lunar-client
   ];
-  unstable-pkgs = with unstable-pkgs; [
+  unstable-pkgs = with pkgs-unstable; [
     antigravity-fhs
   ];
 in
