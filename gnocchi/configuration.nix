@@ -312,6 +312,11 @@ in
     };
   };
 
+  services.ollama = {
+    enable = true;
+    package = pkgs.ollama-vulkan;
+  };
+
   virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
