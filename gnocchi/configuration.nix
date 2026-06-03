@@ -52,6 +52,7 @@ let
     just
     nomacs
     playerctl
+    solaar
     tesseract
     tree
     wget
@@ -93,8 +94,6 @@ let
   ];
   unstable-pkgs = with pkgs-unstable; [
     antigravity-fhs
-    gemini-cli
-    claude-code
   ];
 in
 {
