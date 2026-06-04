@@ -79,8 +79,8 @@ let
     lua-language-server
     nixd
     nixfmt
-    python312
-    python312Packages.pip
+    python314
+    python314Packages.pip
     rustup
     stylua
     uv
