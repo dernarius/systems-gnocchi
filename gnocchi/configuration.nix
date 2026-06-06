@@ -71,6 +71,7 @@ let
     onlyoffice-desktopeditors
     pinentry-all
     vlc
+    vivaldi
 
     # languages
     bun
