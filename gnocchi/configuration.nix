@@ -6,6 +6,7 @@
   config,
   pkgs,
   pkgs-unstable,
+  antigravity-nix,
   ...
 }:
 let
@@ -94,7 +95,9 @@ let
     lunar-client
   ];
   unstable-pkgs = with pkgs-unstable; [
-    antigravity-fhs
+  ];
+  antigravity-pkgs = with antigravity-nix.packages.x86_64-linux; [
+    google-antigravity-cli
   ];
 in
 {
@@ -147,7 +150,7 @@ in
   services.pipewire.enable = true;
   services.pulseaudio.enable = false;
 
-  environment.systemPackages = stable-pkgs ++ unstable-pkgs;
+  environment.systemPackages = stable-pkgs ++ unstable-pkgs ++ antigravity-pkgs;
 
   fonts.packages = with pkgs; [
     nerd-fonts.monofur
