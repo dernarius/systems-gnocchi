@@ -77,6 +77,7 @@ let
     # languages
     bun
     clang
+    espup
     gcc
     lua-language-server
     nixd
