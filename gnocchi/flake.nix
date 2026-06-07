@@ -32,7 +32,10 @@
         system = "x86_64-linux";
 
         # Pass flake inputs to modules (so you can use inputs.nixpkgs in other files)
-        specialArgs = { inherit pkgs-unstable; };
+        specialArgs = {
+          inherit pkgs-unstable;
+          inherit antigravity-nix;
+        };
 
         modules = [
           nixos-hardware.nixosModules.lenovo-thinkpad-t14-intel-gen6
