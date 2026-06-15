@@ -94,6 +94,9 @@ let
 
     # games
     lunar-client
+
+    # ai
+    claude-code
   ];
   unstable-pkgs = with pkgs-unstable; [
   ];
