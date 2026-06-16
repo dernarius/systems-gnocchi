@@ -16,6 +16,7 @@ let
     docker-compose
     duplicity
     fastfetch
+    kanshi
     imagemagick
     ncdu
     powertop
