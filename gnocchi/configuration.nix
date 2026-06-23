@@ -28,6 +28,7 @@ let
     v4l2-relayd
 
     # sway/wayland utils
+    batsignal
     grim
     hyprlock
     i3status
