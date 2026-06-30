@@ -58,6 +58,10 @@ let
     solaar
     tesseract
     tree
+    thunar
+    thunar-archive-plugin
+    thunar-volman
+    thunar-shares-plugin
     wget
 
     # applications
@@ -181,14 +185,6 @@ in
   programs.neovim = {
     enable = true;
     defaultEditor = true;
-  };
-
-  programs.thunar = {
-    enable = true;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-    ];
   };
 
   programs.firefox = {
