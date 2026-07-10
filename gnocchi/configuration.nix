@@ -70,7 +70,6 @@ let
     alacritty
     alacritty-theme
     calibre
-    deluge
     discord
     git
     inkscape
@@ -331,6 +330,9 @@ in
     8000
     8080 # development stuff
   ];
+
+  security.pam.services.sudo.fprintAuth = false;
+  security.pam.services.su.fprintAuth = false;
 
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
