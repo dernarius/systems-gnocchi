@@ -24,8 +24,6 @@ let
     udisks
     unzip
     usbutils
-    v4l-utils
-    v4l2-relayd
 
     # sway/wayland utils
     batsignal
@@ -33,6 +31,7 @@ let
     hyprlock
     i3status
     mako
+    polkit_gnome
     rofi
     slurp
     swayidle
@@ -51,7 +50,6 @@ let
     curl
     fd
     gnumake
-    jq
     just
     nomacs
     playerctl
@@ -78,21 +76,19 @@ let
     pinentry-all
     vlc
     vivaldi
+    zellij
 
     # languages
     bun
-    clang
-    espup
     gcc
+    jq
     lua-language-server
     nixd
     nixfmt
     python314
-    python314Packages.pip
     rustup
     stylua
     uv
-    zig
     zsh
     tree-sitter
     ty
@@ -243,6 +239,20 @@ in
     };
     environment = {
       PASSPHRASE = "";
+    };
+  };
+
+  systemd.user.services.polkit-gnome-authentication-agent-1 = {
+    description = "polkit-gnome-authentication-agent-1";
+    wantedBy = [ "graphical-session.target" ];
+    wants = [ "graphical-session.target" ];
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "simple";
+      ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+      Restart = "on-failure";
+      RestartSec = 1;
+      TimeoutStopSec = 10;
     };
   };
 
