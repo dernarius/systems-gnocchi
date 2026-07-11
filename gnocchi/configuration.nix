@@ -86,7 +86,6 @@ let
     nixd
     nixfmt
     python314
-    rustup
     stylua
     uv
     zsh
