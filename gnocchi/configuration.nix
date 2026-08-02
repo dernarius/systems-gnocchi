@@ -94,6 +94,7 @@ let
 
     # games
     lunar-client
+    openttd
 
     # ai
     claude-code
