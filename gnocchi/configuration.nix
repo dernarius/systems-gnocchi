@@ -69,6 +69,7 @@ let
     alacritty-theme
     calibre
     discord
+    feishin
     git
     inkscape
     obs-studio
