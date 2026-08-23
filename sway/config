@@ -27,7 +27,7 @@ workspace_auto_back_and_forth yes
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /run/current-system/sw/share/backgrounds/sway/)
-output * bg /home/stk/wallpaper-jr.jpg fill
+output * bg /home/stk/chebra.jpg fill
 #
 # Example configuration:
 #
@@ -36,8 +36,6 @@ output * bg /home/stk/wallpaper-jr.jpg fill
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
 output eDP-1 position 0 0
-output DP-5 position 1920 0
-output DP-1 position 5760 0
 
 ### Idle configuration
 #
@@ -53,6 +51,10 @@ output DP-1 position 5760 0
 # resumed. It will also lock your screen before your computer goes to sleep.
 exec swayidle -w \
          before-sleep hyprlock
+
+exec batsignal
+
+exec kanshi
 
 ### Input configuration
 #
@@ -191,6 +193,10 @@ exec --no-startup-id pa-notify -t 2
     # Move workspace
     bindsym $mod+Shift+m move workspace to output right
     bindsym $mod+Shift+n move workspace to output down
+
+    # swipe
+    bindgesture swipe:3:left workspace next
+    bindgesture swipe:3:right workspace prev
 # Layout stuff:
 #
     # You can "split" the current object of your focus with

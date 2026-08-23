@@ -1,0 +1,5 @@
+profile desktop {
+  output eDP-1 position 0,0
+  output "Dell Inc. DELL U3225QE 3QZQKF4" position 1920,0
+  output "AOC U32G3X XYDPAJA000474" position 5760,0
+}
