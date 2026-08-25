@@ -6,7 +6,6 @@
   config,
   pkgs,
   pkgs-unstable,
-  antigravity-nix,
   ...
 }:
 let
@@ -100,11 +99,6 @@ let
     # ai
     claude-code
   ];
-  unstable-pkgs = with pkgs-unstable; [
-  ];
-  antigravity-pkgs = with antigravity-nix.packages.x86_64-linux; [
-    google-antigravity-cli
-  ];
 in
 {
   boot.loader.systemd-boot.enable = true;
@@ -156,7 +150,7 @@ in
   services.pipewire.enable = true;
   services.pulseaudio.enable = false;
 
-  environment.systemPackages = stable-pkgs ++ unstable-pkgs ++ antigravity-pkgs;
+  environment.systemPackages = stable-pkgs;
 
   fonts.packages = with pkgs; [
     nerd-fonts.monofur
