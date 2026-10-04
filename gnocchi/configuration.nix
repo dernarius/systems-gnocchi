@@ -105,9 +105,9 @@ in
   boot.loader.efi.canTouchEfiVariables = true;
 
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
-  boot.initrd.kernelModules = [ "i915" ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelParams = [ "zswap.enabled=1" ];
 
   networking.hostName = "gnocchi";
   networking.networkmanager.enable = true;
