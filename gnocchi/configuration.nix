@@ -70,6 +70,7 @@ let
     discord
     feishin
     git
+    keepassxc
     inkscape
     obs-studio
     onlyoffice-desktopeditors
@@ -95,8 +96,8 @@ let
     # games
     lunar-client
     openttd
-
-    # ai
+  ];
+  latest-pkgs = with pkgs-unstable; [
     claude-code
   ];
 in
@@ -150,7 +151,7 @@ in
   services.pipewire.enable = true;
   services.pulseaudio.enable = false;
 
-  environment.systemPackages = stable-pkgs;
+  environment.systemPackages = stable-pkgs ++ latest-pkgs;
 
   fonts.packages = with pkgs; [
     nerd-fonts.monofur
