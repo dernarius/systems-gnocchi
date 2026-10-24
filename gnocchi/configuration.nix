@@ -334,6 +334,7 @@ in
     openDefaultPorts = true;
     user = "stk";
     group = "users";
+    configDir = "/home/stk/.config/syncthing";
   };
 
   virtualisation.docker.enable = true;
