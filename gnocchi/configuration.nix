@@ -332,6 +332,8 @@ in
   services.syncthing = {
     enable = true;
     openDefaultPorts = true;
+    user = "stk";
+    group = "users";
   };
 
   virtualisation.docker.enable = true;
