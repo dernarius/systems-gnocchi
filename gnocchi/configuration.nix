@@ -329,6 +329,11 @@ in
     package = pkgs-unstable.ollama-vulkan;
   };
 
+  services.syncthing = {
+    enable = true;
+    openDefaultPorts = true;
+  };
+
   virtualisation.docker.enable = true;
 
   # Open ports in the firewall.
@@ -336,6 +341,7 @@ in
     6969
     8000
     8080 # development stuff
+    8384 # syncthing
   ];
 
   security.pam.services.sudo.fprintAuth = false;
