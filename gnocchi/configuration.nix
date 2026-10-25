@@ -151,7 +151,28 @@ in
   services.pipewire.enable = true;
   services.pulseaudio.enable = false;
 
-  environment.systemPackages = stable-pkgs ++ latest-pkgs;
+  environment.systemPackages =
+    stable-pkgs
+    ++ latest-pkgs
+    ++ [
+      (pkgs.writeTextDir "share/polkit-1/actions/local.ssh-agent.confirm.policy" ''
+        <?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE policyconfig PUBLIC
+          "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
+          "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
+        <policyconfig>
+          <action id="local.ssh-agent.confirm">
+            <description>Confirm SSH agent signature</description>
+            <message>A remote host wants to use your SSH key</message>
+            <defaults>
+              <allow_any>no</allow_any>
+              <allow_inactive>no</allow_inactive>
+              <allow_active>auth_self</allow_active>
+            </defaults>
+          </action>
+        </policyconfig>
+      '')
+    ];
 
   fonts.packages = with pkgs; [
     nerd-fonts.monofur
@@ -189,6 +210,17 @@ in
     enable = true;
     pinentryPackage = pkgs.pinentry-curses;
     enableSSHSupport = true;
+  };
+
+  programs.ssh = {
+    startAgent = true;
+    askPassword = toString (
+      pkgs.writeShellScript "polkit-confirm" ''
+        exec ${pkgs.polkit}/bin/pkcheck \
+          --action-id local.ssh-agent.confirm \
+          --process $$ --allow-user-interaction >/dev/null 2>&1
+      ''
+    );
   };
 
   systemd.timers."backup" = {
