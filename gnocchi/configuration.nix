@@ -151,28 +151,7 @@ in
   services.pipewire.enable = true;
   services.pulseaudio.enable = false;
 
-  environment.systemPackages =
-    stable-pkgs
-    ++ latest-pkgs
-    ++ [
-      (pkgs.writeTextDir "share/polkit-1/actions/local.ssh-agent.confirm.policy" ''
-        <?xml version="1.0" encoding="UTF-8"?>
-        <!DOCTYPE policyconfig PUBLIC
-          "-//freedesktop//DTD PolicyKit Policy Configuration 1.0//EN"
-          "http://www.freedesktop.org/standards/PolicyKit/1/policyconfig.dtd">
-        <policyconfig>
-          <action id="local.ssh-agent.confirm">
-            <description>Confirm SSH agent signature</description>
-            <message>A remote host wants to use your SSH key</message>
-            <defaults>
-              <allow_any>no</allow_any>
-              <allow_inactive>no</allow_inactive>
-              <allow_active>auth_self</allow_active>
-            </defaults>
-          </action>
-        </policyconfig>
-      '')
-    ];
+  environment.systemPackages = stable-pkgs ++ latest-pkgs;
 
   fonts.packages = with pkgs; [
     nerd-fonts.monofur
