@@ -191,17 +191,6 @@ in
     enableSSHSupport = true;
   };
 
-  programs.ssh = {
-    startAgent = true;
-    askPassword = toString (
-      pkgs.writeShellScript "polkit-confirm" ''
-        exec ${pkgs.polkit}/bin/pkcheck \
-          --action-id local.ssh-agent.confirm \
-          --process $$ --allow-user-interaction >/dev/null 2>&1
-      ''
-    );
-  };
-
   systemd.timers."backup" = {
     wantedBy = [ "timers.target" ];
     timerConfig = {
